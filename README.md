@@ -14,3 +14,4 @@ This node adapts [StableDesign: 2nd place solution for the Generative Interior D
 
 The pipeline automatically downloads custom models of `controlnet_depth` and `own_controlnet` to the local repository. Other models are downloaded to the `.cache` folder of Hugging Face.
 
+![image](https://github.com/user-attachments/assets/44e3520c-1b42-41a2-8996-47e5fb37d9a1)
