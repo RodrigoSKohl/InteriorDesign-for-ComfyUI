@@ -1,0 +1,5 @@
+__pycache__/
+node/__pycache__/
+own_controlnet/diffusion_pytorch_model.safetensors
+controlnet_depth/diffusion_pytorch_model.safetensors
+.cache/
