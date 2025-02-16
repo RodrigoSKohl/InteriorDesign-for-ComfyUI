@@ -1,0 +1,217 @@
+{
+  "last_node_id": 30,
+  "last_link_id": 44,
+  "nodes": [
+    {
+      "id": 14,
+      "type": "PreviewImage",
+      "pos": [
+        936.3425903320312,
+        -25.60385513305664
+      ],
+      "size": [
+        210,
+        246
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 43
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 5,
+      "type": "LoadImage",
+      "pos": [
+        14.436566352844238,
+        -146.12979125976562
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            42
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "bedroom_1.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 26,
+      "type": "interior-design-for-comfyui",
+      "pos": [
+        487.18255615234375,
+        -8.370706558227539
+      ],
+      "size": [
+        340.20001220703125,
+        274
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 42
+        },
+        {
+          "name": "positive",
+          "type": "STRING",
+          "link": 44,
+          "widget": {
+            "name": "positive"
+          }
+        },
+        {
+          "name": "negative",
+          "type": "STRING",
+          "link": null,
+          "widget": {
+            "name": "negative"
+          },
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            43
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "interior-design-for-comfyui"
+      },
+      "widgets_values": [
+        "",
+        10,
+        50,
+        0.9,
+        814014690245587,
+        "randomize",
+        768,
+        0.5,
+        0.5,
+        ""
+      ]
+    },
+    {
+      "id": 29,
+      "type": "StringFunction|pysssss",
+      "pos": [
+        -133.7979736328125,
+        223.61289978027344
+      ],
+      "size": [
+        577.1492309570312,
+        354.80126953125
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            44
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "StringFunction|pysssss"
+      },
+      "widgets_values": [
+        "append",
+        "yes",
+        "An elegantly appointed bedroom in the Art Deco style, featuring a grand king-size bed with geometric bedding, a luxurious velvet armchair, and a mirrored nightstand that reflects the room's opulence. Art Deco-inspired artwork adds a touch of glamour",
+        "",
+        "",
+        "An elegantly appointed bedroom in the Art Deco style, featuring a grand king-size bed with geometric bedding, a luxurious velvet armchair, and a mirrored nightstand that reflects the room's opulence. Art Deco-inspired artwork adds a touch of glamour"
+      ]
+    }
+  ],
+  "links": [
+    [
+      42,
+      5,
+      0,
+      26,
+      0,
+      "IMAGE"
+    ],
+    [
+      43,
+      26,
+      0,
+      14,
+      0,
+      "IMAGE"
+    ],
+    [
+      44,
+      29,
+      0,
+      26,
+      1,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.5706456420278478,
+      "offset": [
+        625.0543518197444,
+        269.4681234254746
+      ]
+    },
+    "ue_links": [],
+    "node_versions": {
+      "comfy-core": "v0.3.7-10-g23827ca",
+      "StableDesign-for-ComfyUI": "d469e19f1196cce71737197957efd604c7d45c4f",
+      "comfyui-custom-scripts": "a53ef9b617ed1331640d7a2cd97644995908dc00"
+    }
+  },
+  "version": 0.4
+}
