@@ -4,8 +4,6 @@
 
 </div>
 
-### This node is still under development
-
 This node only work on `transformers>=4.39.0,<=4.45.0`
 
 
@@ -16,4 +14,5 @@ More about this pipeline works, see this post on [Medium](https://medium.com/@me
 #
 The pipeline automatically downloads trained models of `controlnet_depth` and `own_controlnet` to the local repository. Other models are downloaded to the `.cache` folder of Hugging Face.
 
+This node is available on [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager)
 ![image](https://github.com/user-attachments/assets/44e3520c-1b42-41a2-8996-47e5fb37d9a1)
