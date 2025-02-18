@@ -189,11 +189,49 @@ class ControlNetDepthDesignModelMulti:
     def __init__(self):
         """ Initialize your model(s) here """
         #os.environ['HF_HUB_OFFLINE'] = "True"
-        
+        self.ip_adapter_scale = 0.4
         self.seed = 323*111
         self.neg_prompt = "window, door, low resolution, banner, logo, watermark, text, deformed, blurry, out of focus, surreal, ugly, beginner"
         self.control_items = ["windowpane;window", "door;double;door"]
         self.additional_quality_suffix = "interior design, 4K, high resolution, photorealistic"
+
+
+        self.controlnet_depth = ControlNetModel.from_pretrained(
+            os.path.join(rootfolder, "controlnet_depth"),
+            torch_dtype=dtype,
+            use_safetensors=True
+        )
+
+        self.controlnet_seg = ControlNetModel.from_pretrained(
+            os.path.join(rootfolder, "own_controlnet"),
+            torch_dtype=dtype,
+            use_safetensors=True
+        )
+
+        self.pipe = StableDiffusionControlNetInpaintPipeline.from_pretrained(
+            "SG161222/Realistic_Vision_V5.1_noVAE",
+            controlnet=[self.controlnet_depth, self.controlnet_seg],
+            safety_checker=None,
+            torch_dtype=dtype
+        )
+
+        self.pipe.load_ip_adapter("h94/IP-Adapter", subfolder="models",
+                                  weight_name="ip-adapter_sd15.bin")
+        self.pipe.set_ip_adapter_scale(self.ip_adapter_scale)
+        self.pipe.scheduler = UniPCMultistepScheduler.from_config(self.pipe.scheduler.config)
+        self.pipe = self.pipe.to(device)
+
+        self.guide_pipe = StableDiffusionXLPipeline.from_pretrained(
+            "segmind/SSD-1B",
+            torch_dtype=dtype,
+            use_safetensors=True,
+            variant="fp16"
+        )
+        self.guide_pipe = self.guide_pipe.to(device)
+
+        self.seg_image_processor, self.image_segmentor = get_segmentation_pipeline()
+        self.depth_feature_extractor, self.depth_estimator = get_depth_pipeline()
+        self.depth_estimator = self.depth_estimator.to(device)
         
     def generate_design(self, empty_room_image: Image, prompt: str, guidance_scale: int = 10, num_steps: int = 50, strength: float =0.9, img_size: int = 640, img_dept_threshold=0.5, img_seg_threshold=0.5 ) -> Image:
         """
@@ -206,7 +244,11 @@ class ControlNetDepthDesignModelMulti:
             design_image - PIL Image of the same size as the empty room image
                            If the size is not the same the submission will fail.
         """
-        print(prompt)
+        print(f"Positive Prompt: {prompt}")
+        print(f"Negative Prompt: {self.neg_prompt}")
+        print(f"Seed: {self.seed}")
+        print(f"IP Adapter Scale: {self.ip_adapter_scale}")
+
         flush()
         self.generator = torch.Generator(device=device).manual_seed(self.seed)
 
@@ -216,8 +258,8 @@ class ControlNetDepthDesignModelMulti:
         new_width, new_height = resize_dimensions(empty_room_image.size, img_size)
         input_image = empty_room_image.resize((new_width, new_height))
         real_seg = np.array(segment_image(input_image,
-                                          seg_image_processor,
-                                          image_segmentor))
+                                          self.seg_image_processor,
+                                          self.image_segmentor))
         unique_colors = np.unique(real_seg.reshape(-1, real_seg.shape[2]), axis=0)
         unique_colors = [tuple(color) for color in unique_colors]
         segment_items = [map_colors_rgb(i) for i in unique_colors]
@@ -236,13 +278,13 @@ class ControlNetDepthDesignModelMulti:
         mask_image = Image.fromarray((mask * 255).astype(np.uint8)).convert("RGB")
         segmentation_cond_image = Image.fromarray(real_seg).convert("RGB")
 
-        image_depth = get_depth_image(image, depth_feature_extractor, depth_estimator)
+        image_depth = get_depth_image(image, self.depth_feature_extractor, self.depth_estimator)
 
         # generate image that would be used as IP-adapter
         flush()
         new_width_ip = int(new_width / 8) * 8
         new_height_ip = int(new_height / 8) * 8
-        ip_image = guide_pipe(pos_prompt,
+        ip_image = self.guide_pipe(pos_prompt,
                                    num_inference_steps=num_steps,
                                    negative_prompt=self.neg_prompt,
                                    height=new_height_ip,
@@ -250,7 +292,7 @@ class ControlNetDepthDesignModelMulti:
                                    generator=[self.generator]).images[0]
 
         flush()
-        generated_image = pipe(
+        generated_image = self.pipe(
             prompt=pos_prompt,
             negative_prompt=self.neg_prompt,
             num_inference_steps=num_steps,
@@ -273,33 +315,5 @@ class ControlNetDepthDesignModelMulti:
 
 
 
-controlnet_depth = ControlNetModel.from_pretrained(
-    os.path.join(rootfolder,"controlnet_depth"), torch_dtype=dtype, use_safetensors=True
-)
-
-controlnet_seg = ControlNetModel.from_pretrained(
-    os.path.join(rootfolder,"own_controlnet"), torch_dtype=dtype, use_safetensors=True
-)
-
-pipe = StableDiffusionControlNetInpaintPipeline.from_pretrained(
-    "SG161222/Realistic_Vision_V5.1_noVAE",
-    #"models/runwayml--stable-diffusion-inpainting",
-    controlnet=[controlnet_depth, controlnet_seg],
-    safety_checker=None,
-    torch_dtype=dtype
-)
-
-pipe.load_ip_adapter("h94/IP-Adapter", subfolder="models",
-                     weight_name="ip-adapter_sd15.bin")
-pipe.set_ip_adapter_scale(0.4)
-pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config)
-pipe = pipe.to(device)
-guide_pipe = StableDiffusionXLPipeline.from_pretrained("segmind/SSD-1B",
-                                                       torch_dtype=dtype, use_safetensors=True, variant="fp16")
-guide_pipe = guide_pipe.to(device)
-   
-seg_image_processor, image_segmentor = get_segmentation_pipeline()
-depth_feature_extractor, depth_estimator = get_depth_pipeline()
-depth_estimator = depth_estimator.to(device)
 
 
