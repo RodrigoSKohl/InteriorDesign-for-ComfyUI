@@ -5,7 +5,7 @@ version = "1.1.1"
 license = {file = "LICENSE"}
 
 [project.urls]
-Repository = "https://github.com/RodrigoSKohl/"
+Repository = "https://github.com/RodrigoSKohl/InteriorDesign-for-ComfyUI"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
