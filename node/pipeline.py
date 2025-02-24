@@ -15,33 +15,29 @@ import os
 from huggingface_hub import hf_hub_download
 
 
-rootfolder = "./ComfyUI/custom_nodes/StableDesign-for-ComfyUI"
 repo_id = "MykolaL/StableDesign"
 file_name = "diffusion_pytorch_model.safetensors"
 models = ["controlnet_depth", "own_controlnet"]
-# Função para verificar e baixar o arquivo, se necessário
-def check_and_download(model_name, rootfolder):
-    model_path = os.path.join(rootfolder, model_name)
-    file_path = os.path.join(model_path, file_name)
-    
-    if not os.path.exists(file_path):
-        print(f"📥 Arquivo {file_name} não encontrado em {model_path}. Baixando do Hugging Face Space...")
-        downloaded_file = hf_hub_download(
-            repo_id=repo_id,
-            filename=file_name,  # Nome do arquivo
-            subfolder=model_name,  # Nome da subpasta dentro do Space
-            local_dir=rootfolder,  # Diretório onde salvar o arquivo
-            repo_type="space"  # Indica que está baixando de um Space
-        )
-        print(f"✅ Download concluído: {downloaded_file}")
-    else:
-        print(f"✔️ Arquivo já existe: {file_path}")
+rootfolder = "./custom_models"
+
+def check_and_download(model_name,rootfolder):
+    hf_hub_download(
+        repo_id=repo_id,
+        filename=file_name,
+        subfolder= model_name,  
+        local_dir=rootfolder,
+        repo_type="space"  
+    )
+    hf_hub_download(
+        repo_id=repo_id,
+        filename="config.json",
+        subfolder= model_name,
+        local_dir=rootfolder,
+        repo_type="space"
+    )
 for model_name in models:
-    # Garante que a pasta do modelo exista dentro do diretório raiz
     model_path = os.path.join(rootfolder, model_name)
-    os.makedirs(model_path, exist_ok=True)
-    # Verificar e baixar o arquivo para cada modelo
-    check_and_download(model_name, rootfolder)
+    check_and_download(model_name,rootfolder)
 
 
 device = "cuda"
@@ -195,15 +191,15 @@ class ControlNetDepthDesignModelMulti:
         self.control_items = ["windowpane;window", "door;double;door"]
         self.additional_quality_suffix = "interior design, 4K, high resolution, photorealistic"
 
-
+        
         self.controlnet_depth = ControlNetModel.from_pretrained(
-            os.path.join(rootfolder, "controlnet_depth"),
+            rootfolder,subfolder="controlnet_depth",
             torch_dtype=dtype,
             use_safetensors=True
         )
 
         self.controlnet_seg = ControlNetModel.from_pretrained(
-            os.path.join(rootfolder, "own_controlnet"),
+            rootfolder,subfolder="own_controlnet",
             torch_dtype=dtype,
             use_safetensors=True
         )
