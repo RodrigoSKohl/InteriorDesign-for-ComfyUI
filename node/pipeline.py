@@ -13,12 +13,13 @@ from diffusers import StableDiffusionXLPipeline
 import gc
 import os
 from huggingface_hub import hf_hub_download
+import folder_paths
 
 
 repo_id = "MykolaL/StableDesign"
 file_name = "diffusion_pytorch_model.safetensors"
 models = ["controlnet_depth", "own_controlnet"]
-rootfolder = "./custom_models"
+rootfolder = folder_paths.folder_names_and_paths["controlnet"][0][0]
 
 def check_and_download(model_name,rootfolder):
     hf_hub_download(
