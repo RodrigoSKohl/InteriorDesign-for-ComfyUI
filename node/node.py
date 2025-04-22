@@ -25,6 +25,7 @@ class InteriorDesignNode:
                 "img_dept_threshold": ("FLOAT", {"default": 0.5, "min": 0.1, "max": 0.99, "step": 0.01}),
                 "img_seg_threshold": ("FLOAT", {"default": 0.5, "min": 0.1, "max": 0.99, "step": 0.01}),
                 "ip_adapter_scale": ("FLOAT", {"default": 0.40, "min": 0.01, "max": 1.0, "step": 0.01}),
+                "ip_adapter_model":(["ip-adapter_sd15.bin","ip-adapter-plus_sd15.bin","ip-adapter_sd15_light.bin"], {})
             },
             "optional": {
                 "negative": ("STRING",{"forceInput": True}),  # Prompt de descrição do design
@@ -37,9 +38,10 @@ class InteriorDesignNode:
     FUNCTION = "process"  # Função que será executada
     CATEGORY = "interior_design"  # Categoria para o ComfyUI
 
-    def process(self, image, positive, guidance_scale, num_steps, strength, seed, img_size, img_dept_threshold, img_seg_threshold, ip_adapter_scale, negative=None):
+    def process(self, image, positive, guidance_scale, num_steps, strength, seed, img_size, img_dept_threshold, img_seg_threshold, ip_adapter_scale, ip_adapter_model, negative=None):
         # Pré-processamento da imagem
         self.pipeline.ip_adapter_scale = ip_adapter_scale
+        self.pipeline.ip_adapter_model = ip_adapter_model
         self.pipeline.seed = seed
         if negative is not None:
             self.pipeline.neg_prompt = negative

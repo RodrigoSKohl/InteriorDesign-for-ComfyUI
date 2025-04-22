@@ -187,10 +187,12 @@ class ControlNetDepthDesignModelMulti:
         """ Initialize your model(s) here """
         #os.environ['HF_HUB_OFFLINE'] = "True"
         self.ip_adapter_scale = 0.4
+        self.ip_adapter_model = "ip-adapter_sd15.bin"
         self.seed = 323*111
         self.neg_prompt = "window, door, low resolution, banner, logo, watermark, text, deformed, blurry, out of focus, surreal, ugly, beginner"
         self.control_items = ["windowpane;window", "door;double;door"]
         self.additional_quality_suffix = "interior design, 4K, high resolution, photorealistic"
+        
 
         
         self.controlnet_depth = ControlNetModel.from_pretrained(
@@ -209,11 +211,12 @@ class ControlNetDepthDesignModelMulti:
             "SG161222/Realistic_Vision_V5.1_noVAE",
             controlnet=[self.controlnet_depth, self.controlnet_seg],
             safety_checker=None,
-            torch_dtype=dtype
+            torch_dtype=dtype,
         )
+        
 
         self.pipe.load_ip_adapter("h94/IP-Adapter", subfolder="models",
-                                  weight_name="ip-adapter_sd15.bin")
+                                  weight_name=self.ip_adapter_model,)
         self.pipe.set_ip_adapter_scale(self.ip_adapter_scale)
         self.pipe.scheduler = UniPCMultistepScheduler.from_config(self.pipe.scheduler.config)
         self.pipe = self.pipe.to(device)
