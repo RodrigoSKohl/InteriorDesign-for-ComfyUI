@@ -5,6 +5,8 @@ torchvision
 accelerate==0.26.1
 opencv-python==4.9.0.80
 scipy==1.11.4
-triton==2.1.0
 altair==4.1.0
 pandas==2.1.4
+huggingface_hub==0.25.0
+numpy
+Pillow
