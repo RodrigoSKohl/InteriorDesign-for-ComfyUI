@@ -1,33 +1,560 @@
 {
   "id": "2e2763d1-cbdd-47c4-bbc1-155355544f13",
   "revision": 0,
-  "last_node_id": 161,
-  "last_link_id": 346,
+  "last_node_id": 261,
+  "last_link_id": 731,
   "nodes": [
     {
-      "id": 6,
-      "type": "VAEDecode",
+      "id": 32,
+      "type": "PrimitiveStringMultiline",
       "pos": [
-        412.9100341796875,
-        -726.0072631835938
+        -1364.4539794921875,
+        -364.9561767578125
       ],
       "size": [
-        140,
-        46
+        400,
+        200
       ],
       "flags": {},
-      "order": 42,
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            210
+          ]
+        }
+      ],
+      "title": "Positive Prompt",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "A dining room that epitomizes contemporary elegance, anchored by a sleek, minimalist dining table paired with stylish modern chairs. Artistic lighting fixtures create a focal point above, while the surrounding minimalist decor ensures the space feels open, airy, and utterly modern"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 107,
+      "type": "PrimitiveInt",
+      "pos": [
+        -1371.5950927734375,
+        -501.2434997558594
+      ],
+      "size": [
+        210,
+        82
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            204,
+            205,
+            337
+          ]
+        }
+      ],
+      "title": "Seed",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "PrimitiveInt"
+      },
+      "widgets_values": [
+        143668900,
+        "fixed"
+      ]
+    },
+    {
+      "id": 132,
+      "type": "MarkdownNote",
+      "pos": [
+        -545.0498657226562,
+        -832.21142578125
+      ],
+      "size": [
+        260.4696960449219,
+        162.07650756835938
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Generates a guide image to be used as input for the IP Adapter.\n\n- Can be generated using the `segmind/SSD-1B` model:  \n  [https://huggingface.co/segmind/SSD-1B](https://huggingface.co/segmind/SSD-1B/blob/main/SSD-1B.safetensors)\n- The model should be stored under `models/checkpoints` folder.  \n- Alternatively, the user may provide a different model or a reference image.\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 81,
+      "type": "StringConcatenate",
+      "pos": [
+        -856.6806640625,
+        -366.02435302734375
+      ],
+      "size": [
+        368.97589111328125,
+        166
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
-          "name": "samples",
-          "type": "LATENT",
-          "link": 20
+          "name": "string_a",
+          "type": "STRING",
+          "widget": {
+            "name": "string_a"
+          },
+          "link": 210
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            203,
+            209
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "StringConcatenate"
+      },
+      "widgets_values": [
+        "",
+        "interior design, 4K, high resolution, photorealistic",
+        ","
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 177,
+      "type": "MarkdownNote",
+      "pos": [
+        -891.5366821289062,
+        -503.3645935058594
+      ],
+      "size": [
+        294.9363098144531,
+        88
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "I recommend target size in 512 or 768(using multiply of eight equal origial pipeline)"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 245,
+      "type": "Reroute",
+      "pos": [
+        1640.2630615234375,
+        -533.6828002929688
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": 619
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            665,
+            694
+          ]
+        }
+      ],
+      "properties": {
+        "showOutputText": true,
+        "horizontal": false
+      }
+    },
+    {
+      "id": 261,
+      "type": "MaskPreview",
+      "pos": [
+        686.3746948242188,
+        -917.2965087890625
+      ],
+      "size": [
+        259.1817626953125,
+        258
+      ],
+      "flags": {},
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 724
+        }
+      ],
+      "outputs": [],
+      "title": "Attention Mask",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "MaskPreview"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 137,
+      "type": "MarkdownNote",
+      "pos": [
+        261.5048828125,
+        -703.3652954101562
+      ],
+      "size": [
+        401.7870788574219,
+        364.65460205078125
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Uses the guide image with the [ComfyUI_IPAdapter_plus](https://github.com/cubiq/ComfyUI_IPAdapter_plus) custom node.\n\n## Required Models\n\n- **IP Adapter SD15**  \n  Download from:  \n  [https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter_sd15.safetensors](https://huggingface.co/h94/IP-Adapter/models)  \n  Save to (maybe you need to create the folder):  \n  `models/ipadapter`\n\n- **CLIP ViT-H Encoder**  \n  Download from:  \n  [https://huggingface.co/h94/IP-Adapter/resolve/main/models/image_encoder/model.safetensors](https://huggingface.co/h94/IP-Adapter/models/image_encoder)  \n  Save to:  \n  `models/clip_vision/`  \n  ⚠️ Must be renamed to `CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors` for the node to work, since advanced model loading is no longer supported and the repo is unmaintained.\n\n   - The **attention mask used by the IPAdapter** plays a key role in **preserving style features** from the reference image. When a mask is provided, the adapter **constrains the style application to specific regions**, maintaining **style consistency** only where needed. It is inverted to preserve only the control items selected\n\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 143,
+      "type": "UpscaleModelLoader",
+      "pos": [
+        1017.462890625,
+        -919.7487182617188
+      ],
+      "size": [
+        210,
+        58
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            307
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "UpscaleModelLoader"
+      },
+      "widgets_values": [
+        "4x-UltraSharp.pth"
+      ]
+    },
+    {
+      "id": 138,
+      "type": "MarkdownNote",
+      "pos": [
+        212.36895751953125,
+        198.0406036376953
+      ],
+      "size": [
+        344.6339111328125,
+        304.2916259765625
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "This step uses depth information to guide image generation via ControlNet.\n\n## Depth Estimation\n\n- Uses the custom node [Depth Anything V2](https://github.com/DepthAnything/Depth-Anything-V2)\n- This replaces the older Depth Anything model, offering improved results with no major changes required to the pipeline.\n\n## ControlNet Model\n\n- Download the original custom depth ControlNet model from:  \n  [https://huggingface.co/spaces/MykolaL/StableDesign/blob/main/controlnet_depth](https://huggingface.co/spaces/MykolaL/StableDesign/blob/main/controlnet_depth/diffusion_pytorch_model.safetensors)  \n- Save it to:  \n  `models/controlnet`  \n  ⚠️ It is recommended to rename the file, as it uses the default name from the repository (`diffusion_pytorch_model.safetensors`).\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 22,
+      "type": "ControlNetLoader",
+      "pos": [
+        -713.1218872070312,
+        194.27040100097656
+      ],
+      "size": [
+        210,
+        58
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            728
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "ControlNetLoader"
+      },
+      "widgets_values": [
+        "depth\\controlnet_depth(StableDesign).safetensors"
+      ]
+    },
+    {
+      "id": 45,
+      "type": "DownloadAndLoadDepthAnythingV2Model",
+      "pos": [
+        -717.8124389648438,
+        292.86041259765625
+      ],
+      "size": [
+        305.3121032714844,
+        82
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "da_v2_model",
+          "type": "DAMODEL",
+          "links": [
+            82
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-depthanythingv2",
+        "ver": "d505cbca99803fc63327b8305618a23e59a18b42",
+        "Node name for S&R": "DownloadAndLoadDepthAnythingV2Model",
+        "aux_id": "kijai/ComfyUI-DepthAnythingV2"
+      },
+      "widgets_values": [
+        "depth_anything_v2_vitl_fp32.safetensors",
+        "auto"
+      ]
+    },
+    {
+      "id": 46,
+      "type": "DepthAnything_V2",
+      "pos": [
+        -713.5314331054688,
+        425.7839050292969
+      ],
+      "size": [
+        156.64413452148438,
+        46
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "da_model",
+          "type": "DAMODEL",
+          "link": 82
+        },
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 276
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            98,
+            171
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-depthanythingv2",
+        "ver": "d505cbca99803fc63327b8305618a23e59a18b42",
+        "Node name for S&R": "DepthAnything_V2"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 79,
+      "type": "ControlNetApplyAdvanced",
+      "pos": [
+        -398.0252685546875,
+        198.7395782470703
+      ],
+      "size": [
+        210,
+        186
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 409
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 410
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 728
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 171
         },
         {
           "name": "vae",
+          "shape": 7,
           "type": "VAE",
-          "link": 3
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            411,
+            708,
+            709
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            412
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "ControlNetApplyAdvanced"
+      },
+      "widgets_values": [
+        0.5000000000000001,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 59,
+      "type": "PreviewImage",
+      "pos": [
+        -171.6739044189453,
+        197.54811096191406
+      ],
+      "size": [
+        367.04461669921875,
+        297.6577453613281
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 98
+        }
+      ],
+      "outputs": [],
+      "title": "Depth",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 161,
+      "type": "Interior Design Segmentator",
+      "pos": [
+        -553.0316772460938,
+        -220.9697723388672
+      ],
+      "size": [
+        214.98886108398438,
+        46
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 340
+        },
+        {
+          "name": "control_items",
+          "type": "CONTROL_ITEMS",
+          "link": 341
         }
       ],
       "outputs": [
@@ -35,31 +562,657 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            56,
-            92
+            344,
+            345
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            541
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "interior-design-for-comfyui",
+        "ver": "9443c413e17048827197402d64823bf279780479",
+        "Node name for S&R": "Interior Design Segmentator"
+      },
+      "widgets_values": [],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 131,
+      "type": "Control Items",
+      "pos": [
+        -547.6038818359375,
+        -132.23362731933594
+      ],
+      "size": [
+        210,
+        106
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CONTROL_ITEMS",
+          "type": "CONTROL_ITEMS",
+          "links": [
+            341
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "interior-design-for-comfyui",
+        "ver": "9443c413e17048827197402d64823bf279780479",
+        "Node name for S&R": "Control Items"
+      },
+      "widgets_values": [
+        true,
+        true,
+        false
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 23,
+      "type": "ControlNetLoader",
+      "pos": [
+        -546.041748046875,
+        14.156322479248047
+      ],
+      "size": [
+        210,
+        58
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            727
           ]
         }
       ],
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.3.41",
-        "Node name for S&R": "VAEDecode"
+        "Node name for S&R": "ControlNetLoader"
+      },
+      "widgets_values": [
+        "seg\\own_controlnet(StableDesign).safetensors"
+      ]
+    },
+    {
+      "id": 111,
+      "type": "ControlNetApplyAdvanced",
+      "pos": [
+        -315.1111145019531,
+        -222.78929138183594
+      ],
+      "size": [
+        210,
+        186
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 414
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 413
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 727
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 345
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            409
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            410
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "ControlNetApplyAdvanced"
+      },
+      "widgets_values": [
+        0.5000000000000001,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 213,
+      "type": "GrowMask",
+      "pos": [
+        -315.8119812011719,
+        4.877704620361328
+      ],
+      "size": [
+        210,
+        82
+      ],
+      "flags": {},
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 541
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            536,
+            537,
+            538
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "GrowMask"
+      },
+      "widgets_values": [
+        2,
+        true
+      ]
+    },
+    {
+      "id": 214,
+      "type": "MaskPreview",
+      "pos": [
+        -80.0701675415039,
+        -220.67626953125
+      ],
+      "size": [
+        140,
+        246.00001525878906
+      ],
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 538
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "MaskPreview"
       },
       "widgets_values": []
+    },
+    {
+      "id": 120,
+      "type": "PreviewImage",
+      "pos": [
+        93.609375,
+        -221.0480499267578
+      ],
+      "size": [
+        140,
+        246
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 344
+        }
+      ],
+      "outputs": [],
+      "title": "Segmentation",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 139,
+      "type": "MarkdownNote",
+      "pos": [
+        258.6305236816406,
+        -209.80172729492188
+      ],
+      "size": [
+        298.49114990234375,
+        282.06671142578125
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "This step uses a segmentation map to guide image generation via ControlNet.\n\n## ControlNet Model\n\n- Download the segmentation ControlNet model from:  \n  [https://huggingface.co/spaces/MykolaL/StableDesign/blob/main/own_controlnet](https://huggingface.co/spaces/MykolaL/StableDesign/blob/main/own_controlnet/diffusion_pytorch_model.safetensors)  \n- Save it to:  \n  `models/controlnet`  \n  ⚠️ Rename the file to avoid confusion, as it comes with the generic name `diffusion_pytorch_model.safetensors`.\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 82,
+      "type": "StringConcatenate",
+      "pos": [
+        -838.8675537109375,
+        78.47677612304688
+      ],
+      "size": [
+        210,
+        166
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "string_b",
+          "type": "STRING",
+          "widget": {
+            "name": "string_b"
+          },
+          "link": 207
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            208,
+            214
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "StringConcatenate"
+      },
+      "widgets_values": [
+        "window, door, low resolution, banner, logo, watermark, text, deformed, blurry, out of focus, surreal, ugly, beginner",
+        "",
+        ","
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 33,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -1362.4600830078125,
+        -122.3654556274414
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 12,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            207
+          ]
+        }
+      ],
+      "title": "Negative Prompt (Optional)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        " "
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 4,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -251.93238830566406,
+        -823.4676513671875
+      ],
+      "size": [
+        210.29940795898438,
+        34
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 8
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 203
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            80
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 5,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -249.4560546875,
+        -771.0978393554688
+      ],
+      "size": [
+        210.29940795898438,
+        34
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 11
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 208
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            81
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 13,
+      "type": "EmptyLatentImage",
+      "pos": [
+        -254.6282501220703,
+        -723.886474609375
+      ],
+      "size": [
+        210,
+        106
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 356
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 357
+        },
+        {
+          "name": "batch_size",
+          "type": "INT",
+          "widget": {
+            "name": "batch_size"
+          },
+          "link": 358
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            6
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        56,
+        512,
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -528.4998168945312,
+        -630.4678955078125
+      ],
+      "size": [
+        210,
+        98
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            12
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            8,
+            11
+          ]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "SSD-1B.safetensors"
+      ]
+    },
+    {
+      "id": 165,
+      "type": "GetImageSize",
+      "pos": [
+        -546.7715454101562,
+        -484.13104248046875
+      ],
+      "size": [
+        140,
+        124
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 355
+        }
+      ],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            356,
+            729
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            357,
+            730
+          ]
+        },
+        {
+          "name": "batch_size",
+          "type": "INT",
+          "links": [
+            358
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "GetImageSize"
+      },
+      "widgets_values": [
+        "width: 512, height: 512\n batch size: 1"
+      ]
     },
     {
       "id": 7,
       "type": "KSampler",
       "pos": [
-        90.69685363769531,
-        -736.1925048828125
+        -248.58981323242188,
+        -582.0670166015625
       ],
       "size": [
-        270,
+        210,
         262
       ],
       "flags": {},
-      "order": 39,
+      "order": 40,
       "mode": 0,
       "inputs": [
         {
@@ -110,353 +1263,35 @@
         "fixed",
         25,
         9,
-        "euler",
-        "normal",
+        "dpmpp_2m_sde",
+        "karras",
         0.9000000000000001
       ]
     },
     {
-      "id": 22,
-      "type": "ControlNetLoader",
+      "id": 6,
+      "type": "VAEDecode",
       "pos": [
-        -702.7457885742188,
-        414.4010009765625
+        -393.8498840332031,
+        -473.5920715332031
       ],
       "size": [
-        270,
-        58
+        140,
+        46
       ],
       "flags": {},
-      "order": 0,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "CONTROL_NET",
-          "type": "CONTROL_NET",
-          "links": [
-            34
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "ControlNetLoader"
-      },
-      "widgets_values": [
-        "depth\\controlnet_depth(StableDesign).safetensors"
-      ]
-    },
-    {
-      "id": 33,
-      "type": "PrimitiveStringMultiline",
-      "pos": [
-        -1395.5089111328125,
-        -123.28988647460938
-      ],
-      "size": [
-        400,
-        200
-      ],
-      "flags": {},
-      "order": 1,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            207
-          ]
-        }
-      ],
-      "title": "Negative Prompt (Optional)",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "PrimitiveStringMultiline"
-      },
-      "widgets_values": [
-        " "
-      ],
-      "color": "#322",
-      "bgcolor": "#533"
-    },
-    {
-      "id": 81,
-      "type": "StringConcatenate",
-      "pos": [
-        -887.3472290039062,
-        -397.93585205078125
-      ],
-      "size": [
-        368.97589111328125,
-        166
-      ],
-      "flags": {
-        "collapsed": true
-      },
-      "order": 21,
+      "order": 42,
       "mode": 0,
       "inputs": [
         {
-          "name": "string_a",
-          "type": "STRING",
-          "widget": {
-            "name": "string_a"
-          },
-          "link": 210
-        }
-      ],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            203,
-            209
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "StringConcatenate"
-      },
-      "widgets_values": [
-        "",
-        "interior design, 4K, high resolution, photorealistic",
-        ","
-      ],
-      "color": "#232",
-      "bgcolor": "#353"
-    },
-    {
-      "id": 23,
-      "type": "ControlNetLoader",
-      "pos": [
-        -524.0086669921875,
-        81.8063735961914
-      ],
-      "size": [
-        270,
-        58
-      ],
-      "flags": {},
-      "order": 2,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "CONTROL_NET",
-          "type": "CONTROL_NET",
-          "links": [
-            258
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "ControlNetLoader"
-      },
-      "widgets_values": [
-        "seg\\own_controlnet(StableDesign).safetensors"
-      ]
-    },
-    {
-      "id": 3,
-      "type": "CheckpointLoaderSimple",
-      "pos": [
-        -536.0324096679688,
-        -609.9761352539062
-      ],
-      "size": [
-        270,
-        98
-      ],
-      "flags": {},
-      "order": 3,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            12
-          ]
-        },
-        {
-          "name": "CLIP",
-          "type": "CLIP",
-          "links": [
-            8,
-            11
-          ]
-        },
-        {
-          "name": "VAE",
-          "type": "VAE",
-          "links": [
-            3
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "CheckpointLoaderSimple"
-      },
-      "widgets_values": [
-        "SSD-1B.safetensors"
-      ]
-    },
-    {
-      "id": 25,
-      "type": "SetUnionControlNetType",
-      "pos": [
-        -172.53834533691406,
-        117.04817199707031
-      ],
-      "size": [
-        270,
-        58
-      ],
-      "flags": {},
-      "order": 20,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "control_net",
-          "type": "CONTROL_NET",
-          "link": 258
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONTROL_NET",
-          "type": "CONTROL_NET",
-          "links": [
-            259
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "SetUnionControlNetType"
-      },
-      "widgets_values": [
-        "segment"
-      ]
-    },
-    {
-      "id": 32,
-      "type": "PrimitiveStringMultiline",
-      "pos": [
-        -1397.5028076171875,
-        -365.8805236816406
-      ],
-      "size": [
-        400,
-        200
-      ],
-      "flags": {},
-      "order": 4,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "STRING",
-          "type": "STRING",
-          "links": [
-            210
-          ]
-        }
-      ],
-      "title": "Positive Prompt",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "PrimitiveStringMultiline"
-      },
-      "widgets_values": [
-        "A dining room that epitomizes contemporary elegance, anchored by a sleek, minimalist dining table paired with stylish modern chairs. Artistic lighting fixtures create a focal point above, while the surrounding minimalist decor ensures the space feels open, airy, and utterly modern"
-      ],
-      "color": "#232",
-      "bgcolor": "#353"
-    },
-    {
-      "id": 76,
-      "type": "VAEEncodeForInpaint",
-      "pos": [
-        621.3834228515625,
-        41.49498748779297
-      ],
-      "size": [
-        272.4048767089844,
-        98
-      ],
-      "flags": {},
-      "order": 38,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "pixels",
-          "type": "IMAGE",
-          "link": 277
+          "name": "samples",
+          "type": "LATENT",
+          "link": 20
         },
         {
           "name": "vae",
           "type": "VAE",
-          "link": 144
-        },
-        {
-          "name": "mask",
-          "type": "MASK",
-          "link": 346
-        }
-      ],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            146
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "VAEEncodeForInpaint"
-      },
-      "widgets_values": [
-        1
-      ]
-    },
-    {
-      "id": 121,
-      "type": "MaskToImage",
-      "pos": [
-        -328.9177551269531,
-        211.1032257080078
-      ],
-      "size": [
-        184.62362670898438,
-        26
-      ],
-      "flags": {},
-      "order": 37,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "mask",
-          "type": "MASK",
-          "link": 342
+          "link": 3
         }
       ],
       "outputs": [
@@ -464,662 +1299,15 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            247
+            56,
+            484
           ]
         }
       ],
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.3.41",
-        "Node name for S&R": "MaskToImage"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 4,
-      "type": "CLIPTextEncode",
-      "pos": [
-        -198.57489013671875,
-        -651.8577880859375
-      ],
-      "size": [
-        210.29940795898438,
-        88
-      ],
-      "flags": {
-        "collapsed": true
-      },
-      "order": 27,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 8
-        },
-        {
-          "name": "text",
-          "type": "STRING",
-          "widget": {
-            "name": "text"
-          },
-          "link": 203
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            80
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "CLIPTextEncode"
-      },
-      "widgets_values": [
-        ""
-      ],
-      "color": "#232",
-      "bgcolor": "#353"
-    },
-    {
-      "id": 5,
-      "type": "CLIPTextEncode",
-      "pos": [
-        -206.19314575195312,
-        -582.1829833984375
-      ],
-      "size": [
-        210.29940795898438,
-        88
-      ],
-      "flags": {
-        "collapsed": true
-      },
-      "order": 25,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 11
-        },
-        {
-          "name": "text",
-          "type": "STRING",
-          "widget": {
-            "name": "text"
-          },
-          "link": 208
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            81
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "CLIPTextEncode"
-      },
-      "widgets_values": [
-        ""
-      ],
-      "color": "#322",
-      "bgcolor": "#533"
-    },
-    {
-      "id": 132,
-      "type": "MarkdownNote",
-      "pos": [
-        -530.7215576171875,
-        -816.4869995117188
-      ],
-      "size": [
-        260.4696960449219,
-        162.07650756835938
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "properties": {},
-      "widgets_values": [
-        "Generates a guide image to be used as input for the IP Adapter.\n\n- Can be generated using the `segmind/SSD-1B` model:  \n  [https://huggingface.co/segmind/SSD-1B](https://huggingface.co/segmind/SSD-1B/blob/main/SSD-1B.safetensors)\n- The model should be stored under `models/checkpoints` folder.  \n- Alternatively, the user may provide a different model or a reference image.\n"
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
-    },
-    {
-      "id": 111,
-      "type": "ControlNetApplyAdvanced",
-      "pos": [
-        -140.79214477539062,
-        -115.4814453125
-      ],
-      "size": [
-        270,
-        186
-      ],
-      "flags": {},
-      "order": 36,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 218
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 217
-        },
-        {
-          "name": "control_net",
-          "type": "CONTROL_NET",
-          "link": 259
-        },
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "link": 345
-        },
-        {
-          "name": "vae",
-          "shape": 7,
-          "type": "VAE",
-          "link": 219
-        }
-      ],
-      "outputs": [
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "links": [
-            298
-          ]
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "links": [
-            301
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "ControlNetApplyAdvanced"
-      },
-      "widgets_values": [
-        0.5000000000000001,
-        0,
-        1
-      ]
-    },
-    {
-      "id": 137,
-      "type": "MarkdownNote",
-      "pos": [
-        795.6456909179688,
-        -578.12646484375
-      ],
-      "size": [
-        396.82476806640625,
-        282.08331298828125
-      ],
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "properties": {},
-      "widgets_values": [
-        "Uses the guide image with the [ComfyUI_IPAdapter_plus](https://github.com/cubiq/ComfyUI_IPAdapter_plus) custom node.\n\n## Required Models\n\n- **IP Adapter SD15**  \n  Download from:  \n  [https://huggingface.co/h94/IP-Adapter/resolve/main/models/ip-adapter_sd15.safetensors](https://huggingface.co/h94/IP-Adapter/models)  \n  Save to (maybe you need to create the folder):  \n  `models/ipadapter`\n\n- **CLIP ViT-H Encoder**  \n  Download from:  \n  [https://huggingface.co/h94/IP-Adapter/resolve/main/models/image_encoder/model.safetensors](https://huggingface.co/h94/IP-Adapter/models/image_encoder)  \n  Save to:  \n  `models/clip_vision/`  \n  ⚠️ Must be renamed to `CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors` for the node to work, since advanced model loading is no longer supported and the repo is unmaintained.\n"
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
-    },
-    {
-      "id": 139,
-      "type": "MarkdownNote",
-      "pos": [
-        147.14968872070312,
-        24.772274017333984
-      ],
-      "size": [
-        298.49114990234375,
-        282.06671142578125
-      ],
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "properties": {},
-      "widgets_values": [
-        "This step uses a segmentation map to guide image generation via ControlNet.\n\n## ControlNet Model\n\n- Download the segmentation ControlNet model from:  \n  [https://huggingface.co/spaces/MykolaL/StableDesign/blob/main/own_controlnet](https://huggingface.co/spaces/MykolaL/StableDesign/blob/main/own_controlnet/diffusion_pytorch_model.safetensors)  \n- Save it to:  \n  `models/controlnet`  \n  ⚠️ Rename the file to avoid confusion, as it comes with the generic name `diffusion_pytorch_model.safetensors`.\n"
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
-    },
-    {
-      "id": 13,
-      "type": "EmptyLatentImage",
-      "pos": [
-        -222.43978881835938,
-        -480.87078857421875
-      ],
-      "size": [
-        210,
-        106
-      ],
-      "flags": {
-        "collapsed": false
-      },
-      "order": 34,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "width",
-          "type": "INT",
-          "widget": {
-            "name": "width"
-          },
-          "link": 304
-        },
-        {
-          "name": "height",
-          "type": "INT",
-          "widget": {
-            "name": "height"
-          },
-          "link": 305
-        }
-      ],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            6
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "EmptyLatentImage"
-      },
-      "widgets_values": [
-        56,
-        512,
-        1
-      ]
-    },
-    {
-      "id": 24,
-      "type": "SetUnionControlNetType",
-      "pos": [
-        -407.49163818359375,
-        416.0394592285156
-      ],
-      "size": [
-        270,
-        58
-      ],
-      "flags": {},
-      "order": 18,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "control_net",
-          "type": "CONTROL_NET",
-          "link": 34
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONTROL_NET",
-          "type": "CONTROL_NET",
-          "links": [
-            169
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "SetUnionControlNetType"
-      },
-      "widgets_values": [
-        "depth"
-      ]
-    },
-    {
-      "id": 45,
-      "type": "DownloadAndLoadDepthAnythingV2Model",
-      "pos": [
-        -740.7487182617188,
-        528.8541259765625
-      ],
-      "size": [
-        365.3121032714844,
-        82
-      ],
-      "flags": {},
-      "order": 8,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "da_v2_model",
-          "type": "DAMODEL",
-          "links": [
-            82
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui-depthanythingv2",
-        "ver": "d505cbca99803fc63327b8305618a23e59a18b42",
-        "Node name for S&R": "DownloadAndLoadDepthAnythingV2Model",
-        "aux_id": "kijai/ComfyUI-DepthAnythingV2"
-      },
-      "widgets_values": [
-        "depth_anything_v2_vitl_fp32.safetensors",
-        "auto"
-      ]
-    },
-    {
-      "id": 46,
-      "type": "DepthAnything_V2",
-      "pos": [
-        -717.4320678710938,
-        672.8815307617188
-      ],
-      "size": [
-        312.734130859375,
-        77.45999908447266
-      ],
-      "flags": {},
-      "order": 29,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "da_model",
-          "type": "DAMODEL",
-          "link": 82
-        },
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 276
-        }
-      ],
-      "outputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "links": [
-            98,
-            171
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui-depthanythingv2",
-        "ver": "d505cbca99803fc63327b8305618a23e59a18b42",
-        "Node name for S&R": "DepthAnything_V2"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 79,
-      "type": "ControlNetApplyAdvanced",
-      "pos": [
-        -343.232421875,
-        528.325439453125
-      ],
-      "size": [
-        270,
-        186
-      ],
-      "flags": {},
-      "order": 33,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 215
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 216
-        },
-        {
-          "name": "control_net",
-          "type": "CONTROL_NET",
-          "link": 169
-        },
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "link": 171
-        },
-        {
-          "name": "vae",
-          "shape": 7,
-          "type": "VAE",
-          "link": 170
-        }
-      ],
-      "outputs": [
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "links": [
-            297
-          ]
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "links": [
-            300
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "ControlNetApplyAdvanced"
-      },
-      "widgets_values": [
-        0.5000000000000001,
-        0,
-        1
-      ]
-    },
-    {
-      "id": 138,
-      "type": "MarkdownNote",
-      "pos": [
-        118.04875946044922,
-        421.34381103515625
-      ],
-      "size": [
-        344.6339111328125,
-        304.2916259765625
-      ],
-      "flags": {},
-      "order": 9,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "properties": {},
-      "widgets_values": [
-        "This step uses depth information to guide image generation via ControlNet.\n\n## Depth Estimation\n\n- Uses the custom node [Depth Anything V2](https://github.com/DepthAnything/Depth-Anything-V2)\n- This replaces the older Depth Anything model, offering improved results with no major changes required to the pipeline.\n\n## ControlNet Model\n\n- Download the original custom depth ControlNet model from:  \n  [https://huggingface.co/spaces/MykolaL/StableDesign/blob/main/controlnet_depth](https://huggingface.co/spaces/MykolaL/StableDesign/blob/main/controlnet_depth/diffusion_pytorch_model.safetensors)  \n- Save it to:  \n  `models/controlnet`  \n  ⚠️ It is recommended to rename the file, as it uses the default name from the repository (`diffusion_pytorch_model.safetensors`).\n"
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
-    },
-    {
-      "id": 63,
-      "type": "IPAdapterUnifiedLoader",
-      "pos": [
-        610.3306884765625,
-        -812.8778076171875
-      ],
-      "size": [
-        270,
-        78
-      ],
-      "flags": {},
-      "order": 24,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 111
-        },
-        {
-          "name": "ipadapter",
-          "shape": 7,
-          "type": "IPADAPTER",
-          "link": 115
-        }
-      ],
-      "outputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "links": [
-            112
-          ]
-        },
-        {
-          "name": "ipadapter",
-          "type": "IPADAPTER",
-          "links": [
-            114
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui_ipadapter_plus",
-        "ver": "a0f451a5113cf9becb0847b92884cb10cbdec0ef",
-        "Node name for S&R": "IPAdapterUnifiedLoader"
-      },
-      "widgets_values": [
-        "STANDARD (medium strength)"
-      ]
-    },
-    {
-      "id": 64,
-      "type": "IPAdapterModelLoader",
-      "pos": [
-        618.4702758789062,
-        -688.3241577148438
-      ],
-      "size": [
-        270,
-        58
-      ],
-      "flags": {},
-      "order": 10,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "IPADAPTER",
-          "type": "IPADAPTER",
-          "links": [
-            115
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui_ipadapter_plus",
-        "ver": "a0f451a5113cf9becb0847b92884cb10cbdec0ef",
-        "Node name for S&R": "IPAdapterModelLoader"
-      },
-      "widgets_values": [
-        "ip-adapter_sd15.safetensors"
-      ]
-    },
-    {
-      "id": 122,
-      "type": "PreviewImage",
-      "pos": [
-        156.95230102539062,
-        -262.51239013671875
-      ],
-      "size": [
-        140,
-        246.00001525878906
-      ],
-      "flags": {},
-      "order": 41,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 247
-        }
-      ],
-      "outputs": [],
-      "title": "Mask",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "PreviewImage"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 120,
-      "type": "PreviewImage",
-      "pos": [
-        313.9969177246094,
-        -260.78179931640625
-      ],
-      "size": [
-        140,
-        246
-      ],
-      "flags": {},
-      "order": 35,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 344
-        }
-      ],
-      "outputs": [],
-      "title": "Segmentation",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "PreviewImage"
+        "Node name for S&R": "VAEDecode"
       },
       "widgets_values": []
     },
@@ -1127,12 +1315,12 @@
       "id": 34,
       "type": "PreviewImage",
       "pos": [
-        429.91259765625,
-        -612.2884521484375
+        -18.591991424560547,
+        -823.8113403320312
       ],
       "size": [
-        140,
-        246
+        210,
+        456.95172119140625
       ],
       "flags": {},
       "order": 43,
@@ -1154,28 +1342,132 @@
       "widgets_values": []
     },
     {
-      "id": 59,
-      "type": "PreviewImage",
+      "id": 198,
+      "type": "CLIPVisionLoader",
       "pos": [
-        -52.13082504272461,
-        422.2935791015625
+        246.99502563476562,
+        -913.1019897460938
+      ],
+      "size": [
+        210,
+        58
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP_VISION",
+          "type": "CLIP_VISION",
+          "links": [
+            487
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "CLIPVisionLoader"
+      },
+      "widgets_values": [
+        "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
+      ]
+    },
+    {
+      "id": 64,
+      "type": "IPAdapterModelLoader",
+      "pos": [
+        467.4320373535156,
+        -907.7727661132812
+      ],
+      "size": [
+        210,
+        58
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IPADAPTER",
+          "type": "IPADAPTER",
+          "links": [
+            501
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_ipadapter_plus",
+        "ver": "a0f451a5113cf9becb0847b92884cb10cbdec0ef",
+        "Node name for S&R": "IPAdapterModelLoader"
+      },
+      "widgets_values": [
+        "ip-adapter_sd15.safetensors"
+      ]
+    },
+    {
+      "id": 210,
+      "type": "InvertMask",
+      "pos": [
+        387.839599609375,
+        -782.8438720703125
       ],
       "size": [
         140,
-        246.00003051757812
+        26
       ],
       "flags": {},
-      "order": 32,
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 537
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            723,
+            724
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "InvertMask"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 145,
+      "type": "PreviewImage",
+      "pos": [
+        836.1083984375,
+        -221.46844482421875
+      ],
+      "size": [
+        598.5828247070312,
+        434.69769287109375
+      ],
+      "flags": {},
+      "order": 48,
       "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 98
+          "link": 309
         }
       ],
       "outputs": [],
-      "title": "Depth",
+      "title": "Diffusion Image",
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.3.41",
@@ -1184,151 +1476,109 @@
       "widgets_values": []
     },
     {
-      "id": 142,
-      "type": "CM_NearestSDXLResolution",
+      "id": 41,
+      "type": "KSampler",
       "pos": [
-        -471.7952575683594,
-        -430.25872802734375
+        604.094970703125,
+        108.02255249023438
       ],
       "size": [
-        191.64413452148438,
-        46
+        210,
+        262
       ],
       "flags": {},
-      "order": 30,
+      "order": 45,
       "mode": 0,
       "inputs": [
         {
-          "name": "image",
-          "type": "IMAGE",
-          "link": 306
+          "name": "model",
+          "type": "MODEL",
+          "link": 486
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 411
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 412
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 716
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 205
         }
       ],
       "outputs": [
         {
-          "name": "width",
-          "type": "INT",
+          "name": "LATENT",
+          "type": "LATENT",
           "links": [
-            304
-          ]
-        },
-        {
-          "name": "height",
-          "type": "INT",
-          "links": [
-            305
+            77
           ]
         }
       ],
-      "properties": {
-        "cnr_id": "ComfyMath",
-        "ver": "c01177221c31b8e5fbc062778fc8254aeb541638",
-        "Node name for S&R": "CM_NearestSDXLResolution"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 9,
-      "type": "LoadImage",
-      "pos": [
-        -945.4544677734375,
-        -361.9350891113281
-      ],
-      "size": [
-        270,
-        314
-      ],
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            273,
-            311
-          ]
-        },
-        {
-          "name": "MASK",
-          "type": "MASK",
-          "links": []
-        }
-      ],
-      "title": "Load Input Image",
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.3.41",
-        "Node name for S&R": "LoadImage"
+        "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        "dinning_room_3.jpg",
-        "image"
-      ],
-      "color": "#222",
-      "bgcolor": "#000"
+        42,
+        "fixed",
+        50,
+        10,
+        "dpmpp_2m_sde_gpu",
+        "karras",
+        0.9000000000000001
+      ]
     },
     {
-      "id": 130,
-      "type": "Image Normalize",
+      "id": 141,
+      "type": "MarkdownNote",
       "pos": [
-        -1169.78759765625,
-        -506.8669128417969
+        620.425537109375,
+        426.7926330566406
       ],
       "size": [
-        227.74464416503906,
-        106
+        835.4568481445312,
+        342.3270568847656
       ],
       "flags": {},
-      "order": 22,
+      "order": 16,
       "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 273
-        }
-      ],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            276,
-            277,
-            306,
-            340
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "interior-design-for-comfyui",
-        "ver": "9443c413e17048827197402d64823bf279780479",
-        "Node name for S&R": "Image Normalize"
-      },
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
       "widgets_values": [
-        512,
-        8,
-        "bilinear"
+        "\nThis step generates the final image using **Stable Diffusion 1.5 with inpainting**, guided by both depth and segmentation ControlNets.\n\n## Base Model\n\n- **Model:** [Realistic Vision V5.1 (Inpainting)](https://huggingface.co/SG161222/Realistic_Vision_V5.1_noVAE/blob/main/Realistic_Vision_V5.1-inpainting.safetensors)  \n- Save to:  \n  `models/checkpoints`\n\n> ⚠️ A newer version exists, but no major improvements were observed.\n\n## ControlNet Combination\n\n- ControlNets are combined in this order:\n  1. Depth\n  2. Segmentation\n\n> 🔁 Changing the order had any impact on results. Other approaches might help better match the original pipeline.\n\n\nThe original pipeline explicitly replaced the scheduler with `UniPCMultistepScheduler`:\n\n```python\nfrom diffusers import UniPCMultistepScheduler\n\nself.pipe.scheduler = UniPCMultistepScheduler.from_config(self.pip"
       ],
-      "color": "#233",
-      "bgcolor": "#355"
+      "color": "#432",
+      "bgcolor": "#653"
     },
     {
       "id": 38,
       "type": "CheckpointLoaderSimple",
       "pos": [
-        608.1879272460938,
-        -139.8812255859375
+        837.9217529296875,
+        264.62750244140625
       ],
       "size": [
-        319.5867919921875,
-        108.5184097290039
+        210,
+        98
       ],
       "flags": {},
-      "order": 12,
+      "order": 17,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -1336,7 +1586,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            111
+            502
           ]
         },
         {
@@ -1352,11 +1602,8 @@
           "type": "VAE",
           "links": [
             79,
-            144,
-            170,
-            219,
-            329,
-            336
+            619,
+            715
           ]
         }
       ],
@@ -1370,112 +1617,20 @@
       ]
     },
     {
-      "id": 107,
-      "type": "PrimitiveInt",
-      "pos": [
-        -1404.6439208984375,
-        -502.1680603027344
-      ],
-      "size": [
-        210,
-        82
-      ],
-      "flags": {
-        "collapsed": false
-      },
-      "order": 13,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "INT",
-          "type": "INT",
-          "links": [
-            204,
-            205,
-            337
-          ]
-        }
-      ],
-      "title": "Seed",
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "PrimitiveInt"
-      },
-      "widgets_values": [
-        143668900,
-        "fixed"
-      ]
-    },
-    {
-      "id": 35,
-      "type": "CLIPTextEncode",
-      "pos": [
-        982.7101440429688,
-        -133.51083374023438
-      ],
-      "size": [
-        210.29940795898438,
-        88
-      ],
-      "flags": {
-        "collapsed": true
-      },
-      "order": 26,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 61
-        },
-        {
-          "name": "text",
-          "type": "STRING",
-          "widget": {
-            "name": "text"
-          },
-          "link": 214
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            216,
-            217,
-            332
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "CLIPTextEncode"
-      },
-      "widgets_values": [
-        ""
-      ],
-      "color": "#322",
-      "bgcolor": "#533"
-    },
-    {
       "id": 36,
       "type": "CLIPTextEncode",
       "pos": [
-        979.80615234375,
-        -68.59585571289062
+        1134.2249755859375,
+        282.1536560058594
       ],
       "size": [
         210.29940795898438,
-        88
+        34
       ],
       "flags": {
         "collapsed": true
       },
-      "order": 28,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
@@ -1497,9 +1652,7 @@
           "name": "CONDITIONING",
           "type": "CONDITIONING",
           "links": [
-            215,
-            218,
-            331
+            414
           ]
         }
       ],
@@ -1515,109 +1668,52 @@
       "bgcolor": "#353"
     },
     {
-      "id": 126,
-      "type": "PairConditioningCombine",
+      "id": 35,
+      "type": "CLIPTextEncode",
       "pos": [
-        667.4053344726562,
-        209.75762939453125
+        1140.6431884765625,
+        366.0191955566406
       ],
       "size": [
-        162.07186889648438,
-        86
-      ],
-      "flags": {},
-      "order": 40,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "positive_A",
-          "type": "CONDITIONING",
-          "link": 297
-        },
-        {
-          "name": "negative_A",
-          "type": "CONDITIONING",
-          "link": 300
-        },
-        {
-          "name": "positive_B",
-          "type": "CONDITIONING",
-          "link": 298
-        },
-        {
-          "name": "negative_B",
-          "type": "CONDITIONING",
-          "link": 301
-        }
-      ],
-      "outputs": [
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "links": [
-            302
-          ]
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "links": [
-            303
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "PairConditioningCombine"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 82,
-      "type": "StringConcatenate",
-      "pos": [
-        -871.6675415039062,
-        3.361741065979004
-      ],
-      "size": [
-        210,
-        150
+        210.29940795898438,
+        34
       ],
       "flags": {
         "collapsed": true
       },
-      "order": 19,
+      "order": 27,
       "mode": 0,
       "inputs": [
         {
-          "name": "string_b",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 61
+        },
+        {
+          "name": "text",
           "type": "STRING",
           "widget": {
-            "name": "string_b"
+            "name": "text"
           },
-          "link": 207
+          "link": 214
         }
       ],
       "outputs": [
         {
-          "name": "STRING",
-          "type": "STRING",
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
           "links": [
-            208,
-            214
+            413
           ]
         }
       ],
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.3.41",
-        "Node name for S&R": "StringConcatenate"
+        "Node name for S&R": "CLIPTextEncode"
       },
       "widgets_values": [
-        "window, door, low resolution, banner, logo, watermark, text, deformed, blurry, out of focus, surreal, ugly, beginner",
-        "",
-        ","
+        ""
       ],
       "color": "#322",
       "bgcolor": "#533"
@@ -1626,8 +1722,8 @@
       "id": 42,
       "type": "VAEDecode",
       "pos": [
-        1220.304931640625,
-        -161.55670166015625
+        630.9132080078125,
+        -200.93917846679688
       ],
       "size": [
         140,
@@ -1666,47 +1762,34 @@
       "widgets_values": []
     },
     {
-      "id": 41,
-      "type": "KSampler",
+      "id": 76,
+      "type": "VAEEncodeForInpaint",
       "pos": [
-        862.2103881835938,
-        192.63446044921875
+        606.5368041992188,
+        -67.81620788574219
       ],
       "size": [
-        270,
-        262
+        212.40487670898438,
+        98
       ],
       "flags": {},
-      "order": 45,
+      "order": 37,
       "mode": 0,
       "inputs": [
         {
-          "name": "model",
-          "type": "MODEL",
-          "link": 93
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 714
         },
         {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 302
+          "name": "vae",
+          "type": "VAE",
+          "link": 715
         },
         {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 303
-        },
-        {
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 146
-        },
-        {
-          "name": "seed",
-          "type": "INT",
-          "widget": {
-            "name": "seed"
-          },
-          "link": 205
+          "name": "mask",
+          "type": "MASK",
+          "link": 536
         }
       ],
       "outputs": [
@@ -1714,174 +1797,25 @@
           "name": "LATENT",
           "type": "LATENT",
           "links": [
-            77
+            716
           ]
         }
       ],
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.3.41",
-        "Node name for S&R": "KSampler"
+        "Node name for S&R": "VAEEncodeForInpaint"
       },
       "widgets_values": [
-        42,
-        "fixed",
-        50,
-        10,
-        "euler",
-        "normal",
-        0.9000000000000001
-      ]
-    },
-    {
-      "id": 145,
-      "type": "PreviewImage",
-      "pos": [
-        1400.232421875,
-        -162.7487030029297
-      ],
-      "size": [
-        140,
-        246
-      ],
-      "flags": {},
-      "order": 48,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 309
-        }
-      ],
-      "outputs": [],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "PreviewImage"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 141,
-      "type": "MarkdownNote",
-      "pos": [
-        1168.7044677734375,
-        137.92733764648438
-      ],
-      "size": [
-        467.87884521484375,
-        416.0183410644531
-      ],
-      "flags": {},
-      "order": 14,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "properties": {},
-      "widgets_values": [
-        "\nThis step generates the final image using **Stable Diffusion 1.5 with inpainting**, guided by both depth and segmentation ControlNets.\n\n## Base Model\n\n- **Model:** [Realistic Vision V5.1 (Inpainting)](https://huggingface.co/SG161222/Realistic_Vision_V5.1_noVAE/blob/main/Realistic_Vision_V5.1-inpainting.safetensors)  \n- Save to:  \n  `models/checkpoints`\n\n> ⚠️ A newer version exists, but no major improvements were observed.\n\n## ControlNet Combination\n\n- ControlNets are combined in this order:\n  1. Depth\n  2. Segmentation\n\n> 🔁 Changing the order had any impact on results. Other approaches might help better match the original pipeline.\n\n\nThe original pipeline explicitly replaced the scheduler with `UniPCMultistepScheduler`:\n\n```python\nfrom diffusers import UniPCMultistepScheduler\n\nself.pipe.scheduler = UniPCMultistepScheduler.from_config(self.pip"
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
-    },
-    {
-      "id": 146,
-      "type": "ImageScale",
-      "pos": [
-        1876.01171875,
-        -161.27243041992188
-      ],
-      "size": [
-        270,
-        130
-      ],
-      "flags": {},
-      "order": 49,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "link": 310
-        },
-        {
-          "name": "width",
-          "type": "INT",
-          "widget": {
-            "name": "width"
-          },
-          "link": 312
-        },
-        {
-          "name": "height",
-          "type": "INT",
-          "widget": {
-            "name": "height"
-          },
-          "link": 313
-        }
-      ],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            328
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "ImageScale"
-      },
-      "widgets_values": [
-        "bilinear",
-        512,
-        512,
-        "disabled"
-      ]
-    },
-    {
-      "id": 143,
-      "type": "UpscaleModelLoader",
-      "pos": [
-        2166.35302734375,
-        -153.9991912841797
-      ],
-      "size": [
-        270,
-        58
-      ],
-      "flags": {},
-      "order": 15,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "UPSCALE_MODEL",
-          "type": "UPSCALE_MODEL",
-          "links": [
-            307
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "UpscaleModelLoader"
-      },
-      "widgets_values": [
-        "4x-ESRGAN.pth"
+        0
       ]
     },
     {
       "id": 144,
       "type": "ImageUpscaleWithModel",
       "pos": [
-        2163.442626953125,
-        -42.37593460083008
+        1269.4200439453125,
+        -917.2718505859375
       ],
       "size": [
         221.98202514648438,
@@ -1919,29 +1853,88 @@
       "widgets_values": []
     },
     {
+      "id": 146,
+      "type": "ImageScale",
+      "pos": [
+        1693.2928466796875,
+        -885.625
+      ],
+      "size": [
+        210,
+        130
+      ],
+      "flags": {},
+      "order": 49,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 310
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 729
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 730
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            347,
+            666
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "lanczos",
+        293,
+        512,
+        "disabled"
+      ]
+    },
+    {
       "id": 157,
       "type": "VAEDecode",
       "pos": [
-        1983.02294921875,
-        17.500192642211914
+        1523.9307861328125,
+        -914.149169921875
       ],
       "size": [
         140,
         46
       ],
       "flags": {},
-      "order": 52,
+      "order": 53,
       "mode": 0,
       "inputs": [
         {
           "name": "samples",
           "type": "LATENT",
-          "link": 334
+          "link": 678
         },
         {
           "name": "vae",
           "type": "VAE",
-          "link": 336
+          "link": 694
         }
       ],
       "outputs": [
@@ -1961,18 +1954,60 @@
       "widgets_values": []
     },
     {
+      "id": 226,
+      "type": "VAEEncode",
+      "pos": [
+        1495.9652099609375,
+        -812.0438842773438
+      ],
+      "size": [
+        140,
+        46
+      ],
+      "flags": {},
+      "order": 51,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 666
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 665
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            707
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "VAEEncode"
+      },
+      "widgets_values": []
+    },
+    {
       "id": 159,
       "type": "SaveImage",
       "pos": [
-        2150.8388671875,
-        55.758201599121094
+        2152.797119140625,
+        -916.5498046875
       ],
       "size": [
-        270,
-        270
+        365.34539794921875,
+        570.4198608398438
       ],
       "flags": {},
-      "order": 53,
+      "order": 54,
       "mode": 0,
       "inputs": [
         {
@@ -1994,39 +2029,69 @@
       "bgcolor": "#000"
     },
     {
+      "id": 162,
+      "type": "PreviewImage",
+      "pos": [
+        1035.6580810546875,
+        -819.9146728515625
+      ],
+      "size": [
+        300.22686767578125,
+        258
+      ],
+      "flags": {},
+      "order": 50,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 347
+        }
+      ],
+      "outputs": [],
+      "title": "Upscaled Image",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
       "id": 155,
       "type": "KSampler",
       "pos": [
-        1840.90625,
-        117.30351257324219
+        1921.0120849609375,
+        -923.6702270507812
       ],
       "size": [
-        270,
+        210,
         262
       ],
       "flags": {},
-      "order": 51,
+      "order": 52,
       "mode": 0,
       "inputs": [
         {
           "name": "model",
           "type": "MODEL",
-          "link": 339
+          "link": 731
         },
         {
           "name": "positive",
           "type": "CONDITIONING",
-          "link": 331
+          "link": 708
         },
         {
           "name": "negative",
           "type": "CONDITIONING",
-          "link": 332
+          "link": 709
         },
         {
           "name": "latent_image",
           "type": "LATENT",
-          "link": 333
+          "link": 707
         },
         {
           "name": "seed",
@@ -2042,7 +2107,7 @@
           "name": "LATENT",
           "type": "LATENT",
           "links": [
-            334
+            678
           ]
         }
       ],
@@ -2054,137 +2119,23 @@
       "widgets_values": [
         42,
         "fixed",
-        100,
-        10,
-        "uni_pc_bh2",
-        "normal",
+        5,
+        1,
+        "dpmpp_2m_sde_gpu",
+        "karras",
         0.5000000000000001
       ]
     },
     {
-      "id": 156,
-      "type": "VAEEncode",
+      "id": 197,
+      "type": "IPAdapterAdvanced",
       "pos": [
-        1827.583984375,
-        18.867908477783203
+        706.5496826171875,
+        -608.4470825195312
       ],
       "size": [
-        140,
-        46
-      ],
-      "flags": {},
-      "order": 50,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "pixels",
-          "type": "IMAGE",
-          "link": 328
-        },
-        {
-          "name": "vae",
-          "type": "VAE",
-          "link": 329
-        }
-      ],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
-          "links": [
-            333
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "VAEEncode"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 147,
-      "type": "GetImageSize",
-      "pos": [
-        1727.86376953125,
-        -149.89578247070312
-      ],
-      "size": [
-        140,
-        124
-      ],
-      "flags": {},
-      "order": 23,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "link": 311
-        }
-      ],
-      "outputs": [
-        {
-          "name": "width",
-          "type": "INT",
-          "links": [
-            312
-          ]
-        },
-        {
-          "name": "height",
-          "type": "INT",
-          "links": [
-            313
-          ]
-        },
-        {
-          "name": "batch_size",
-          "type": "INT",
-          "links": null
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.41",
-        "Node name for S&R": "GetImageSize"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 160,
-      "type": "MarkdownNote",
-      "pos": [
-        2463.355712890625,
-        -168.02671813964844
-      ],
-      "size": [
-        422.3630676269531,
-        312.2231750488281
-      ],
-      "flags": {},
-      "order": 16,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "properties": {},
-      "widgets_values": [
-        "This step performs a final refinement pass using the diffusion model, aimed at improving image coherence while preserving original details.\n\n## Process Overview\n\n1. **Upscaling:**  \n   - The image from Step is upscaled using **ESRGAN x4**.\n\n2. **Downscaling:**  \n   - The upscaled image is resized back to its original resolution.\n\n3. **Latent Noise Injection:**  \n   - The latent representation of the resized image is injected with **50% noise** before reprocessing.\n\n4. **Diffusion Pass with IP Adapter Only:**  \n   - The image is passed again through the **IP Adapter**, using both **positive and negative CLIP embeddings**, but **without ControlNet**, to avoid overwriting fine details.\n   - The same **inpainting model** is reused (`Realistic_Vision_V5.1-inpainting.safetensors`), but with **double the number of steps** for improved refinement.\n"
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
-    },
-    {
-      "id": 57,
-      "type": "IPAdapter",
-      "pos": [
-        922.7847290039062,
-        -812.4465942382812
-      ],
-      "size": [
-        270,
-        190
+        210,
+        278
       ],
       "flags": {},
       "order": 44,
@@ -2193,23 +2144,35 @@
         {
           "name": "model",
           "type": "MODEL",
-          "link": 112
+          "link": 502
         },
         {
           "name": "ipadapter",
           "type": "IPADAPTER",
-          "link": 114
+          "link": 501
         },
         {
           "name": "image",
           "type": "IMAGE",
-          "link": 92
+          "link": 484
+        },
+        {
+          "name": "image_negative",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
         },
         {
           "name": "attn_mask",
           "shape": 7,
           "type": "MASK",
-          "link": 343
+          "link": 723
+        },
+        {
+          "name": "clip_vision",
+          "shape": 7,
+          "type": "CLIP_VISION",
+          "link": 487
         }
       ],
       "outputs": [
@@ -2217,84 +2180,109 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            93,
-            339
+            486,
+            731
           ]
         }
       ],
       "properties": {
         "cnr_id": "comfyui_ipadapter_plus",
         "ver": "a0f451a5113cf9becb0847b92884cb10cbdec0ef",
-        "Node name for S&R": "IPAdapter"
+        "Node name for S&R": "IPAdapterAdvanced"
       },
       "widgets_values": [
-        1.0000000000000002,
+        1,
+        "style transfer",
+        "concat",
         0,
         1,
-        "standard"
+        "V only"
       ]
     },
     {
-      "id": 131,
-      "type": "Control Items",
+      "id": 176,
+      "type": "MarkdownNote",
       "pos": [
-        -503.3625183105469,
-        -102.65502166748047
+        1349.65673828125,
+        -708.5388793945312
       ],
       "size": [
-        270,
-        106
+        546.9530639648438,
+        326.97589111328125
       ],
       "flags": {},
-      "order": 17,
+      "order": 18,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "This step performs an upscale of the image.\n\n## Process Overview\n\n1. **Upscaling:**  \n   - The image from the previous step is upscaled using [**4xUltraSharp**](https://openmodeldb.info/models/4x-UltraSharp).\n\n2. **Downscaling:**  \n   - The upscaled image is resized back to its original diffused resolution.\n\n3. **Latent Refinement via Denoising:**  \n   - This upscaled latent is passed through the **same U-Net**, using the **same CLIP embeddings** and **IP Adapter**.  \n   - A **controlled denoising** process is performed using a **low number of steps** (e.g., 5) and a **moderate noise level** (`strength=0.5`), typically with a scheduler such as *Euler Ancestral* or *DPM++*.  \n   - This step focuses on **refining imperfections**, especially around **inpainting mask borders** or **edge inconsistencies**, without significantly altering the image structure or composition.\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 9,
+      "type": "LoadImage",
+      "pos": [
+        -939.5543823242188,
+        -324.56500244140625
+      ],
+      "size": [
+        340.6628723144531,
+        365.91558837890625
+      ],
+      "flags": {},
+      "order": 19,
       "mode": 0,
       "inputs": [],
       "outputs": [
         {
-          "name": "CONTROL_ITEMS",
-          "type": "CONTROL_ITEMS",
+          "name": "IMAGE",
+          "type": "IMAGE",
           "links": [
-            341
+            273
           ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
         }
       ],
+      "title": "Load Input Image",
       "properties": {
-        "cnr_id": "interior-design-for-comfyui",
-        "ver": "9443c413e17048827197402d64823bf279780479",
-        "Node name for S&R": "Control Items"
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "LoadImage"
       },
       "widgets_values": [
-        true,
-        true,
-        false
+        "living_room_1.jpg",
+        "image"
       ],
-      "color": "#233",
-      "bgcolor": "#355"
+      "color": "#222",
+      "bgcolor": "#000"
     },
     {
-      "id": 161,
-      "type": "Interior Design Segmentator",
+      "id": 130,
+      "type": "Image Normalize",
       "pos": [
-        -461.2010498046875,
-        -224.7035675048828
+        -1136.73876953125,
+        -505.9422912597656
       ],
       "size": [
-        214.98886108398438,
-        46
+        210,
+        106
       ],
       "flags": {},
-      "order": 31,
+      "order": 23,
       "mode": 0,
       "inputs": [
         {
-          "name": "image",
+          "name": "images",
           "type": "IMAGE",
-          "link": 340
-        },
-        {
-          "name": "control_items",
-          "type": "CONTROL_ITEMS",
-          "link": 341
+          "link": 273
         }
       ],
       "outputs": [
@@ -2302,25 +2290,23 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            344,
-            345
-          ]
-        },
-        {
-          "name": "MASK",
-          "type": "MASK",
-          "links": [
-            342,
-            343,
-            346
+            276,
+            340,
+            355,
+            714
           ]
         }
       ],
       "properties": {
         "cnr_id": "interior-design-for-comfyui",
         "ver": "9443c413e17048827197402d64823bf279780479",
-        "Node name for S&R": "Interior Design Segmentator"
+        "Node name for S&R": "Image Normalize"
       },
+      "widgets_values": [
+        512,
+        8,
+        "bilinear"
+      ],
       "color": "#233",
       "bgcolor": "#355"
     }
@@ -2373,14 +2359,6 @@
       6,
       0,
       "LATENT"
-    ],
-    [
-      34,
-      22,
-      0,
-      24,
-      0,
-      "CONTROL_NET"
     ],
     [
       56,
@@ -2447,92 +2425,12 @@
       "DAMODEL"
     ],
     [
-      92,
-      6,
-      0,
-      57,
-      2,
-      "IMAGE"
-    ],
-    [
-      93,
-      57,
-      0,
-      41,
-      0,
-      "MODEL"
-    ],
-    [
       98,
       46,
       0,
       59,
       0,
       "IMAGE"
-    ],
-    [
-      111,
-      38,
-      0,
-      63,
-      0,
-      "MODEL"
-    ],
-    [
-      112,
-      63,
-      0,
-      57,
-      0,
-      "MODEL"
-    ],
-    [
-      114,
-      63,
-      1,
-      57,
-      1,
-      "IPADAPTER"
-    ],
-    [
-      115,
-      64,
-      0,
-      63,
-      1,
-      "IPADAPTER"
-    ],
-    [
-      144,
-      38,
-      2,
-      76,
-      1,
-      "VAE"
-    ],
-    [
-      146,
-      76,
-      0,
-      41,
-      3,
-      "LATENT"
-    ],
-    [
-      169,
-      24,
-      0,
-      79,
-      2,
-      "CONTROL_NET"
-    ],
-    [
-      170,
-      38,
-      2,
-      79,
-      4,
-      "VAE"
     ],
     [
       171,
@@ -2607,70 +2505,6 @@
       "STRING"
     ],
     [
-      215,
-      36,
-      0,
-      79,
-      0,
-      "CONDITIONING"
-    ],
-    [
-      216,
-      35,
-      0,
-      79,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      217,
-      35,
-      0,
-      111,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      218,
-      36,
-      0,
-      111,
-      0,
-      "CONDITIONING"
-    ],
-    [
-      219,
-      38,
-      2,
-      111,
-      4,
-      "VAE"
-    ],
-    [
-      247,
-      121,
-      0,
-      122,
-      0,
-      "IMAGE"
-    ],
-    [
-      258,
-      23,
-      0,
-      25,
-      0,
-      "CONTROL_NET"
-    ],
-    [
-      259,
-      25,
-      0,
-      111,
-      2,
-      "CONTROL_NET"
-    ],
-    [
       273,
       9,
       0,
@@ -2684,86 +2518,6 @@
       0,
       46,
       1,
-      "IMAGE"
-    ],
-    [
-      277,
-      130,
-      0,
-      76,
-      0,
-      "IMAGE"
-    ],
-    [
-      297,
-      79,
-      0,
-      126,
-      0,
-      "CONDITIONING"
-    ],
-    [
-      298,
-      111,
-      0,
-      126,
-      2,
-      "CONDITIONING"
-    ],
-    [
-      300,
-      79,
-      1,
-      126,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      301,
-      111,
-      1,
-      126,
-      3,
-      "CONDITIONING"
-    ],
-    [
-      302,
-      126,
-      0,
-      41,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      303,
-      126,
-      1,
-      41,
-      2,
-      "CONDITIONING"
-    ],
-    [
-      304,
-      142,
-      0,
-      13,
-      0,
-      "INT"
-    ],
-    [
-      305,
-      142,
-      1,
-      13,
-      1,
-      "INT"
-    ],
-    [
-      306,
-      130,
-      0,
-      142,
-      0,
       "IMAGE"
     ],
     [
@@ -2799,86 +2553,6 @@
       "IMAGE"
     ],
     [
-      311,
-      9,
-      0,
-      147,
-      0,
-      "IMAGE"
-    ],
-    [
-      312,
-      147,
-      0,
-      146,
-      1,
-      "INT"
-    ],
-    [
-      313,
-      147,
-      1,
-      146,
-      2,
-      "INT"
-    ],
-    [
-      328,
-      146,
-      0,
-      156,
-      0,
-      "IMAGE"
-    ],
-    [
-      329,
-      38,
-      2,
-      156,
-      1,
-      "VAE"
-    ],
-    [
-      331,
-      36,
-      0,
-      155,
-      1,
-      "CONDITIONING"
-    ],
-    [
-      332,
-      35,
-      0,
-      155,
-      2,
-      "CONDITIONING"
-    ],
-    [
-      333,
-      156,
-      0,
-      155,
-      3,
-      "LATENT"
-    ],
-    [
-      334,
-      155,
-      0,
-      157,
-      0,
-      "LATENT"
-    ],
-    [
-      336,
-      38,
-      2,
-      157,
-      1,
-      "VAE"
-    ],
-    [
       337,
       107,
       0,
@@ -2893,14 +2567,6 @@
       159,
       0,
       "IMAGE"
-    ],
-    [
-      339,
-      57,
-      0,
-      155,
-      0,
-      "MODEL"
     ],
     [
       340,
@@ -2919,22 +2585,6 @@
       "CONTROL_ITEMS"
     ],
     [
-      342,
-      161,
-      1,
-      121,
-      0,
-      "MASK"
-    ],
-    [
-      343,
-      161,
-      1,
-      57,
-      3,
-      "MASK"
-    ],
-    [
       344,
       161,
       0,
@@ -2951,12 +2601,308 @@
       "IMAGE"
     ],
     [
-      346,
-      161,
+      347,
+      146,
+      0,
+      162,
+      0,
+      "IMAGE"
+    ],
+    [
+      355,
+      130,
+      0,
+      165,
+      0,
+      "IMAGE"
+    ],
+    [
+      356,
+      165,
+      0,
+      13,
+      0,
+      "INT"
+    ],
+    [
+      357,
+      165,
       1,
+      13,
+      1,
+      "INT"
+    ],
+    [
+      358,
+      165,
+      2,
+      13,
+      2,
+      "INT"
+    ],
+    [
+      409,
+      111,
+      0,
+      79,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      410,
+      111,
+      1,
+      79,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      411,
+      79,
+      0,
+      41,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      412,
+      79,
+      1,
+      41,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      413,
+      35,
+      0,
+      111,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      414,
+      36,
+      0,
+      111,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      484,
+      6,
+      0,
+      197,
+      2,
+      "IMAGE"
+    ],
+    [
+      486,
+      197,
+      0,
+      41,
+      0,
+      "MODEL"
+    ],
+    [
+      487,
+      198,
+      0,
+      197,
+      5,
+      "CLIP_VISION"
+    ],
+    [
+      501,
+      64,
+      0,
+      197,
+      1,
+      "IPADAPTER"
+    ],
+    [
+      502,
+      38,
+      0,
+      197,
+      0,
+      "MODEL"
+    ],
+    [
+      536,
+      213,
+      0,
       76,
       2,
       "MASK"
+    ],
+    [
+      537,
+      213,
+      0,
+      210,
+      0,
+      "MASK"
+    ],
+    [
+      538,
+      213,
+      0,
+      214,
+      0,
+      "MASK"
+    ],
+    [
+      541,
+      161,
+      1,
+      213,
+      0,
+      "MASK"
+    ],
+    [
+      619,
+      38,
+      2,
+      245,
+      0,
+      "*"
+    ],
+    [
+      665,
+      245,
+      0,
+      226,
+      1,
+      "VAE"
+    ],
+    [
+      666,
+      146,
+      0,
+      226,
+      0,
+      "IMAGE"
+    ],
+    [
+      678,
+      155,
+      0,
+      157,
+      0,
+      "LATENT"
+    ],
+    [
+      694,
+      245,
+      0,
+      157,
+      1,
+      "VAE"
+    ],
+    [
+      707,
+      226,
+      0,
+      155,
+      3,
+      "LATENT"
+    ],
+    [
+      708,
+      79,
+      0,
+      155,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      709,
+      79,
+      0,
+      155,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      714,
+      130,
+      0,
+      76,
+      0,
+      "IMAGE"
+    ],
+    [
+      715,
+      38,
+      2,
+      76,
+      1,
+      "VAE"
+    ],
+    [
+      716,
+      76,
+      0,
+      41,
+      3,
+      "LATENT"
+    ],
+    [
+      723,
+      210,
+      0,
+      197,
+      4,
+      "MASK"
+    ],
+    [
+      724,
+      210,
+      0,
+      261,
+      0,
+      "MASK"
+    ],
+    [
+      727,
+      23,
+      0,
+      111,
+      2,
+      "CONTROL_NET"
+    ],
+    [
+      728,
+      22,
+      0,
+      79,
+      2,
+      "CONTROL_NET"
+    ],
+    [
+      729,
+      165,
+      0,
+      146,
+      1,
+      "INT"
+    ],
+    [
+      730,
+      165,
+      1,
+      146,
+      2,
+      "INT"
+    ],
+    [
+      731,
+      197,
+      0,
+      155,
+      0,
+      "MODEL"
     ]
   ],
   "groups": [
@@ -2964,10 +2910,10 @@
       "id": 1,
       "title": "IP Adapter Image Guidance",
       "bounding": [
-        -546.0324096679688,
-        -890.0869750976562,
-        1125.945068359375,
-        533.7985229492188
+        -556.7715454101562,
+        -905.8114013671875,
+        758.1796875,
+        595.744384765625
       ],
       "color": "#3f789e",
       "font_size": 24,
@@ -2977,10 +2923,10 @@
       "id": 2,
       "title": "Input",
       "bounding": [
-        -1414.6439208984375,
-        -579.0248413085938,
-        749.1898193359375,
-        665.7351684570312
+        -1381.5950927734375,
+        -579.5422973632812,
+        794.9932861328125,
+        667.1770629882812
       ],
       "color": "#a1309b",
       "font_size": 24,
@@ -2990,10 +2936,10 @@
       "id": 3,
       "title": "Depth Controlnet",
       "bounding": [
-        -750.7487182617188,
-        340.8009948730469,
-        1223.431396484375,
-        419.5405578613281
+        -727.8124389648438,
+        120.6705093383789,
+        1294.815185546875,
+        391.6617736816406
       ],
       "color": "#3f789e",
       "font_size": 24,
@@ -3003,10 +2949,10 @@
       "id": 4,
       "title": "Diffusion Step",
       "bounding": [
-        598.1879272460938,
-        -236.3487091064453,
-        1048.395263671875,
-        800.2943725585938
+        594.094970703125,
+        -295.0684509277344,
+        871.7874145507812,
+        1074.188232421875
       ],
       "color": "#3f789e",
       "font_size": 24,
@@ -3016,10 +2962,10 @@
       "id": 5,
       "title": "IP Adapter",
       "bounding": [
-        600.3306884765625,
-        -886.477783203125,
-        602.1399536132812,
-        600.4346313476562
+        236.99508666992188,
+        -990.896484375,
+        718.5610961914062,
+        670.4494018554688
       ],
       "color": "#3f789e",
       "font_size": 24,
@@ -3029,23 +2975,23 @@
       "id": 6,
       "title": "Segment Controlnet",
       "bounding": [
-        -534.0086669921875,
-        -336.11248779296875,
-        998.0056762695312,
-        652.951416015625
+        -563.0316772460938,
+        -296.38916015625,
+        1130.1531982421875,
+        393.2669982910156
       ],
       "color": "#3f789e",
       "font_size": 24,
       "flags": {}
     },
     {
-      "id": 7,
-      "title": "Output",
+      "id": 8,
+      "title": "Upscale Image",
       "bounding": [
-        1717.86376953125,
-        -241.62672424316406,
-        1177.85498046875,
-        630.9302368164062
+        1007.4629516601562,
+        -997.2705688476562,
+        1520.6800537109375,
+        661.1402587890625
       ],
       "color": "#a1309b",
       "font_size": 24,
@@ -3055,10 +3001,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.6934334949442131,
+      "scale": 0.6934334949441805,
       "offset": [
-        1331.5040977754481,
-        706.8026326130054
+        276.812477253557,
+        656.0128038189332
       ]
     },
     "groupNodes": {},
