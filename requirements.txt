@@ -1,12 +1,5 @@
-transformers==4.48.0
-huggingface_hub==0.30.2
-accelerate==1.6.0
-altair==5.5.0
-diffusers==0.33.1
-numpy==1.26.4
-opencv-python==4.11.0.86
-pillow==11.2.1
-scipy==1.15.2
-torchvision
-transformers==4.48.0
-xformers==0.0.29.post3
+torch
+transformers
+Pillow
+numpy
+scipy

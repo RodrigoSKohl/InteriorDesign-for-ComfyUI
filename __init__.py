@@ -1,13 +1,19 @@
 from .node.node import InteriorDesignNode
+from .node.node import ImageNormalize
+from .node.node import ControlItems
 
 
-# Registra o nó no ComfyUI
 NODE_CLASS_MAPPINGS = {
-    "interior-design-for-comfyui": InteriorDesignNode,
+    "Interior Design Segmentator": InteriorDesignNode,
+    "Image Normalize": ImageNormalize,
+    "Control Items": ControlItems,
+
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "interior-design-for-comfyui": "Interior Design for ComfyUI",
+    "Interior Design Segmentator": "Interior Design Segmentator",
+    "Image Normalize": "Image Resize Normalizer",
+    "Control Items": "Control Items Selector",
 }
 
 
