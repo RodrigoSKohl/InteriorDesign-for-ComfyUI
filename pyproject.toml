@@ -1,7 +1,7 @@
 [project]
 name = "interior-design-for-comfyui"
 description = "This node is based on MykolaL/StableDesign"
-version = "2.0.0"
+version = "2.0.1"
 license = {file = "LICENSE"}
 
 [project.urls]

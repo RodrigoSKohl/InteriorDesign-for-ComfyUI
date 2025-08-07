@@ -118,6 +118,7 @@ class ControlItems:
                 "window": ("BOOLEAN", {"default": True}),
                 "door": ("BOOLEAN", {"default": True}),
                 "staircase": ("BOOLEAN", {"default": False}),
+                "columns": ("BOOLEAN", {"default": False}),
             },
         }
 
@@ -126,7 +127,7 @@ class ControlItems:
     FUNCTION = "process"
     CATEGORY = "control"
 
-    def process(self, window: bool, door: bool, staircase: bool):
+    def process(self, window: bool, door: bool, staircase: bool, columns: bool):
         control_items = []
         if window:
             control_items.append("windowpane;window")
@@ -134,4 +135,6 @@ class ControlItems:
             control_items.append("door;double;door")
         if staircase:
             control_items.append("stairway;staircase")
+        if columns:
+            control_items.append("column;pillar")
         return (control_items,) 
